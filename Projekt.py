@@ -1,3 +1,4 @@
+from glob import glob
 from sys import platform
 import cv2
 from multiprocessing import cpu_count
@@ -26,6 +27,8 @@ def video(root):
         if not ret:
             messagebox.showerror('Error', 'Odlaczono kamere!')
             cap.release()
+            global cameraOn
+            cameraOn=False
             return 0
         thicknessx=int(0.01*frame.shape[0])
         thicknessy=int(0.01*frame.shape[1])
