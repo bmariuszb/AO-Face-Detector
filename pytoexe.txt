@@ -1,0 +1,1 @@
+pyinstaller -w -F --hidden-import keras.api._v2 --hidden-import keras.engine.base_layer_v1 --add-data haarcascade_frontalface_default.xml;. --add-data MODEL;MODEL Projekt.py
