@@ -13,7 +13,8 @@ def video(root):
     global frame2, cap
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        messagebox.showerror('Błąd', 'Nie wykryto kamery!')
+        messagebox.showerror('Error', 'Nie wykryto kamery!')
+        cap.release()
         return 0
     frame2 = tk.Frame(root, bg="black", width=800, height=650)
     frame2.pack()
@@ -21,7 +22,11 @@ def video(root):
     label.grid(row=0, column=0)
 
     def show_frames():
-        ret, frame = cap.read()            
+        ret, frame = cap.read()  
+        if not ret:
+            messagebox.showerror('Error', 'Odlaczono kamere!')
+            cap.release()
+            return 0
         thicknessx=int(0.01*frame.shape[0])
         thicknessy=int(0.01*frame.shape[1])
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -64,10 +69,10 @@ def start():
         if frame2:
             frame2.destroy()
         good = video(win)
-    if not good:
-        cameraOn = False
-    else:
+    if good:
         cameraOn = True
+    else:
+        cameraOn = False
 
 
 def stop():
