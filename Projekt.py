@@ -142,7 +142,7 @@ if __name__ == '__main__':
     cameraOn = False
     frame2 = 0
     cap = 0
-# fgd
+
     button_frame = tk.Frame(win, bg='#333333')
     button_frame.pack()
     tk.Button(button_frame, width=22, pady=5, relief=tk.RAISED, bd=10, bg="#6b9494",text="START",command=start).pack(side='left', padx=25)
